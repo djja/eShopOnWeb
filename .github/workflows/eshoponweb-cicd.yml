@@ -24,15 +24,15 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
-        dotnet-quality: 'preview'
+        # dotnet-quality: 'preview'
     #Build/Test/Publish the .net project
     - name: Build with dotnet
-      run: dotnet build ./eShopOnWeb.sln --configuration Release
+      run: dotnet build ./src/BlazorApp1/BlazorApp1.sln --configuration Release
     - name: Test with dotnet
-      run: dotnet test ./eShopOnWeb.sln --configuration Release
+      run: dotnet test ./src/BlazorApp1/BlazorApp1.sln --configuration Release
     - name: dotnet publish
       run: |
-        dotnet publish ./src/Web/Web.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        dotnet publish ./src/BlazorApp1/BlazorApp1/BlazorApp1.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
         cd ${{env.DOTNET_ROOT}}/myapp
         zip -r ../app.zip .
     # upload the published website code artifacts
